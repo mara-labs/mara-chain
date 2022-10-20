@@ -149,15 +149,15 @@ $(BUILDDIR)/:
 #$(info )
 
 docker-build:
-	# TODO replace with kaniko
-#Print Docker flags when needed
-$(info $$DOCKER_IMAGE -> [$(DOCKER_IMAGE)])
-$(info )
-$(info $$DOCKER_TAG -> [$(DOCKER_TAG)])
-$(info )
-$(info $$COMMIT_HASH -> [$(COMMIT_HASH)])
-$(info )
+	#Print Docker flags when needed
+	$(info $$DOCKER_IMAGE -> [$(DOCKER_IMAGE)])
+	$(info )
+	$(info $$DOCKER_TAG -> [$(DOCKER_TAG)])
+	$(info )
+	$(info $$COMMIT_HASH -> [$(COMMIT_HASH)])
+	$(info )
 
+	# TODO replace with kaniko
 	docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
 	docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest
 	# docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:${COMMIT_HASH}
