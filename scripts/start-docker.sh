@@ -1,12 +1,12 @@
 #!/bin/bash
 
 echo "prepare genesis: Run validate-genesis to ensure everything worked and that the genesis file is setup correctly"
-./ethermintd validate-genesis --home /ethermint
+./marad validate-genesis --home /mara
 
-echo "starting ethermint node $ID in background ..."
-./ethermintd start \
---home /ethermint \
+echo "starting mara node $ID in background ..."
+./marad start \
+--home /mara \
 --keyring-backend test
 
-echo "started ethermint node"
+echo "started mara node"
 tail -f /dev/null

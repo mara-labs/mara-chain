@@ -27,5 +27,5 @@ echo '  config: '$CONFIG
 echo '  dotenv: '$DOTENV
 echo '  data: '$DATA
 
-pystarport init --config $CONFIG --dotenv $DOTENV --data $DATA $@
+pystarport init --config $CONFIG --dotenv $DOTENV --data $DATA "$@"
 supervisord -c $DATA/tasks.ini
