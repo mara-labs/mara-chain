@@ -22,8 +22,9 @@ echo "prepare genesis: Run validate-genesis to ensure everything worked and that
 
 echo "starting mara node $i in background ..."
 ./marad start --pruning=nothing --rpc.unsafe \
---keyring-backend test --home $DATA_DIR \
->$DATA_DIR/node.log 2>&1 & disown
+--keyring-backend test --home $DATA_DIR
+--log-level debug
+# nullify log output
+# >$DATA_DIR/node.log 2>&1 & disown
 
 echo "started mara node"
-tail -f /dev/null
