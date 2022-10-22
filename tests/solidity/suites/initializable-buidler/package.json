@@ -5,7 +5,7 @@
   "license": "GPL-3.0-or-later",
   "scripts": {
     "test-ganache": "yarn buidler test --network ganache",
-    "test-ethermint": "yarn buidler test --network ethermint"
+    "test-mara": "yarn buidler test --network mara"
   },
   "devDependencies": {
     "@aragon/contract-helpers-test": "^0.1.0",

@@ -22,7 +22,7 @@ import sources.nixpkgs {
       import ./scripts.nix {
         inherit pkgs;
         config = {
-          ethermint-config = ../scripts/ethermint-devnet.yaml;
+          ethermint-config = ../scripts/mara-devnet.yaml;
           geth-genesis = ../scripts/geth-genesis.json;
           dotenv = builtins.path { name = "dotenv"; path = ../scripts/.env; };
         };

@@ -5,9 +5,9 @@
   "license": "GPL-3.0-or-later",
   "scripts": {
     "contract-compile": "yarn truffle compile",
-    "contract-migrate": "yarn truffle migrate --network ethermint",
+    "contract-migrate": "yarn truffle migrate --network mara",
     "test-ganache": "yarn truffle test",
-    "test-ethermint": "yarn truffle test --network ethermint"
+    "test-mara": "yarn truffle test --network mara"
   },
   "devDependencies": {
     "@aragon/contract-helpers-test": "^0.1.0",

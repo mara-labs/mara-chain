@@ -19,4 +19,4 @@ else
     yarn install
 fi
 
-yarn test --network mara $@
+yarn test --network mara "$@"
