@@ -30,7 +30,7 @@ import (
 )
 
 // DefaultConsensusParams defines the default Tendermint consensus params used in
-// EthermintApp testing.
+// MaraApp testing.
 var DefaultConsensusParams = &abci.ConsensusParams{
 	Block: &abci.BlockParams{
 		MaxBytes: 200000,
@@ -48,10 +48,10 @@ var DefaultConsensusParams = &abci.ConsensusParams{
 	},
 }
 
-// Setup initializes a new EthermintApp. A Nop logger is set in EthermintApp.
-func Setup(isCheckTx bool, patchGenesis func(*EthermintApp, simapp.GenesisState) simapp.GenesisState) *EthermintApp {
+// Setup initializes a new MaraApp. A Nop logger is set in MaraApp.
+func Setup(isCheckTx bool, patchGenesis func(*MaraApp, simapp.GenesisState) simapp.GenesisState) *MaraApp {
 	db := dbm.NewMemDB()
-	app := NewEthermintApp(log.NewNopLogger(), db, nil, true, map[int64]bool{}, DefaultNodeHome, 5, encoding.MakeConfig(ModuleBasics), simapp.EmptyAppOptions{})
+	app := NewMaraApp(log.NewNopLogger(), db, nil, true, map[int64]bool{}, DefaultNodeHome, 5, encoding.MakeConfig(ModuleBasics), simapp.EmptyAppOptions{})
 	if !isCheckTx {
 		// init chain must be called to stop deliverState from being nil
 		genesisState := NewDefaultGenesisState()

@@ -13,9 +13,9 @@ import (
 
 	"github.com/evmos/ethermint/encoding"
 
-	"github.com/evmos/ethermint/app"
 	v3types "github.com/evmos/ethermint/x/evm/migrations/v3/types"
 	"github.com/evmos/ethermint/x/evm/types"
+	"github.com/mara-labs/mara-chain/app"
 )
 
 func TestMigrateStore(t *testing.T) {
