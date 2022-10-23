@@ -70,7 +70,7 @@ init_func() {
     "$PWD"/build/marad keys add $KEY"$i" --keyring-backend test --home "$DATA_DIR$i" --no-backup --algo "eth_secp256k1"
     "$PWD"/build/marad init $MONIKER --chain-id $CHAINID --home "$DATA_DIR$i"
     "$PWD"/build/marad add-genesis-account \
-    "$("$PWD"/build/marad keys show "$KEY$i" --keyring-backend test -a --home "$DATA_DIR$i")" 1000000000000000000aphoton,1000000000000000000stake \
+    "$("$PWD"/build/marad keys show "$KEY$i" --keyring-backend test -a --home "$DATA_DIR$i")" 1000000000000000000amara,1000000000000000000stake \
     --keyring-backend test --home "$DATA_DIR$i"
     "$PWD"/build/marad gentx "$KEY$i" 1000000000000000000stake --chain-id $CHAINID --keyring-backend test --home "$DATA_DIR$i"
     "$PWD"/build/marad collect-gentxs --home "$DATA_DIR$i"

@@ -2,6 +2,7 @@ package config
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/mara-labs/mara-chain/types"
 
 	ethermint "github.com/evmos/ethermint/types"
 )
@@ -51,7 +52,7 @@ func RegisterDenoms() {
 		panic(err)
 	}
 
-	if err := sdk.RegisterDenom(ethermint.AttoPhoton, sdk.NewDecWithPrec(1, ethermint.BaseDenomUnit)); err != nil {
+	if err := sdk.RegisterDenom(types.AttoMara, sdk.NewDecWithPrec(1, ethermint.BaseDenomUnit)); err != nil {
 		panic(err)
 	}
 }

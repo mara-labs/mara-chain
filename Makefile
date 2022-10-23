@@ -131,6 +131,9 @@ build-linux:
 $(BUILD_TARGETS): go.sum $(BUILDDIR)/
 	go $@ $(BUILD_FLAGS) $(BUILD_ARGS) ./...
 
+rebuild: 
+	go build $(BUILD_FLAGS) $(BUILD_ARGS) ./...
+
 $(BUILDDIR)/:
 	mkdir -p $(BUILDDIR)/
 

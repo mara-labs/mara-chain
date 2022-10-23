@@ -7,7 +7,7 @@ DATA_DIR=$(mktemp -d -t mara-datadir.XXXXX)
 
 echo "create and add new keys"
 ./marad keys add $KEY --home $DATA_DIR --no-backup --chain-id $CHAINID --algo "eth_secp256k1" --keyring-backend test
-echo "init Evmos with moniker=$MONIKER and chain-id=$CHAINID"
+echo "init Mara with moniker=$MONIKER and chain-id=$CHAINID"
 ./marad init $MONIKER --chain-id $CHAINID --home $DATA_DIR
 echo "prepare genesis: Allocate genesis accounts"
 ./marad add-genesis-account \
