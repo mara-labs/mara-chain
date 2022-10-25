@@ -3,6 +3,7 @@ package simulation
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/mara-labs/mara-chain/cmd/config"
 	"math/rand"
 
 	"github.com/cosmos/cosmos-sdk/types/module"
@@ -48,7 +49,7 @@ func RandomizedGenState(simState *module.SimulationState) {
 		func(r *rand.Rand) { extraEIPs = GenExtraEIPs(r) },
 	)
 
-	params := types.NewParams(types.DefaultEVMDenom, true, true, types.DefaultChainConfig(), extraEIPs...)
+	params := types.NewParams(config.BaseDenom, true, true, types.DefaultChainConfig(), extraEIPs...)
 	evmGenesis := types.NewGenesisState(params, []types.GenesisAccount{})
 
 	bz, err := json.MarshalIndent(evmGenesis, "", " ")

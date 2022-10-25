@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	maratypes "github.com/mara-labs/mara-chain/types"
 	"net/http"
 	"net/url"
 	"os"
@@ -56,6 +55,7 @@ import (
 	evmtypes "github.com/evmos/ethermint/x/evm/types"
 
 	"github.com/evmos/ethermint/app"
+	maratypes "github.com/mara-labs/mara-chain/types"
 )
 
 // package-wide network lock to only allow one test network at a time

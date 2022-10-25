@@ -11,8 +11,8 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 
 	ethermint "github.com/evmos/ethermint/types"
-	"github.com/evmos/ethermint/x/evm/keeper"
 	"github.com/evmos/ethermint/x/evm/types"
+	"github.com/mara-labs/mara-chain/x/evm/keeper"
 )
 
 // InitGenesis initializes genesis state based on exported genesis

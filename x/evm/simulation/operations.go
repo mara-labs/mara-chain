@@ -26,8 +26,9 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/evmos/ethermint/encoding"
 	"github.com/evmos/ethermint/tests"
-	"github.com/evmos/ethermint/x/evm/keeper"
 	"github.com/evmos/ethermint/x/evm/types"
+
+	"github.com/mara-labs/mara-chain/x/evm/keeper"
 )
 
 const (
