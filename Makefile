@@ -151,6 +151,18 @@ $(BUILDDIR)/:
 #$(info $$BUILDDIR -> [$(BUILDDIR)])
 #$(info )
 
+build-reproducible: go.sum
+	$(DOCKER) rm latest-build || true
+	$(DOCKER) run --volume=$(CURDIR):/sources:ro \
+        --env TARGET_PLATFORMS='linux/amd64' \
+        --env APP=marad \
+        --env VERSION=$(VERSION) \
+        --env COMMIT=$(COMMIT) \
+        --env CGO_ENABLED=1 \
+        --env LEDGER_ENABLED=$(LEDGER_ENABLED) \
+        --name latest-build tendermintdev/rbuilder:latest
+	$(DOCKER) cp -a latest-build:/home/builder/artifacts/ $(CURDIR)/
+
 docker-build:
 	#Print Docker flags when needed
 	$(info $$DOCKER_IMAGE -> [$(DOCKER_IMAGE)])
