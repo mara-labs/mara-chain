@@ -36,6 +36,7 @@ keyring_test_cosmos
 ./**/dist
 secret.yml
 # vue/
+artifacts/
 
 # Local docker volume mappings
 localnet-setup
@@ -68,6 +69,7 @@ dependency-graph.png
 # Contracts
 *.bin
 *.abi
+tests/solidity/
 
 # Node.js
 tests/**/node_modules/*

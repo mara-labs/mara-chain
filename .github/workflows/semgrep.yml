@@ -13,7 +13,7 @@ jobs:
   # Update from: https://semgrep.dev/docs/semgrep-ci/sample-ci-configs/#github-actions
   semgrep:
     name: Scan
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container:
       image: returntocorp/semgrep
     if: (github.actor != 'dependabot[bot]')
