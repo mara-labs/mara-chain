@@ -1,43 +1,32 @@
+# Name of this GitHub Actions workflow.
 name: Semgrep
+
 on:
-  # Scan changed files in PRs, block on new issues only (existing issues ignored)
+  # Scan changed files in PRs (diff-aware scanning):
   pull_request: {}
-  push:
-    branches:
-      - main
-    paths:
-      - .github/workflows/semgrep.yml
-  schedule:
-    - cron: '0 0 * * 0'
+
 jobs:
-  # Update from: https://semgrep.dev/docs/semgrep-ci/sample-ci-configs/#github-actions
   semgrep:
+    # User definable name of this GitHub Actions job:
     name: Scan
-    runs-on: ubuntu-20.04
+    # Only change the if you are self-hosting. See also:
+    # If you are self-hosting, change the following `runs-on` value: 
+    runs-on: ubuntu-latest
+
     container:
+      # A Docker image with Semgrep installed. Do not change this.
       image: returntocorp/semgrep
+
+    # To skip any PR created by dependabot to avoid permission issues:
     if: (github.actor != 'dependabot[bot]')
+
     steps:
       - uses: actions/checkout@v3
-      - name: Get Diff
-        uses: technote-space/get-diff-action@v6.1.0
-        with:
-          PATTERNS: |
-            **/*.go
-            **/*.js
-            **/*.ts
-            **/*.sol
-            go.mod
-            go.sum
-      - uses: actions/checkout@v3
-      - run: semgrep scan --sarif --output=semgrep.sarif
+      - run: semgrep scan --sarif --output=semgrep.sarif --config=policy
         env:
-          # Upload findings to GitHub Advanced Security Dashboard [step 1/2]
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
-        if: "env.GIT_DIFF_FILTERED != ''"
-      # Upload findings to GitHub Advanced Security Dashboard [step 2/2]
-      - name: Upload SARIF file
+      - name: Upload SARIF file for GitHub Advanced Security Dashboard
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: semgrep.sarif
-        if: "env.GIT_DIFF_FILTERED != ''"
+        if: always()
