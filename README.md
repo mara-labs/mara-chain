@@ -19,10 +19,8 @@ Kindly follow the following steps to install and configure your PC to run the Ma
 
 ### Step 1
 
-Run the following command to install Go on your PC.
-```
-brew install golang
-```
+Download and install Go quickly with the steps described [here](Download and install Go quickly with the steps described here).
+
 Next, run `go version` to confirm the installation succeeded.
 
 ### Step 2
@@ -33,7 +31,7 @@ Run the following command to install dependencies:
 make install
 ```
 
-You will likely get this error message `jq not found` To fix this, run `brew install jq`.
+You will likely get this error message `jq not found` To fix this, follow the [guide](https://stedolan.github.io/jq/download/) to install jq.
 
 ### Step 3
 
@@ -48,7 +46,7 @@ Verify everything went well by running the following command.
 which marad
 ```
 
-You will get the error `marad not found`. This is because you need to set $GOBIN and add it to the path, which is where `marad` would be located. Let's fix that by running the following command:
+You will get the error `marad not found`. This is because you need to set $GOBIN and add it to the path where `marad` would be located. Let's fix that by running the following command:
 ```
 export PATH=$PATH:$(go env GOPATH)/bin
 ```
@@ -67,16 +65,7 @@ To start up the Mara chain, run the following command:
 ./init.sh
 ```
 
-> If you already have `Go` installed and configured, you can skip all the steps above.
-
-
-Please read the Evmos [Installation](https://docs.evmos.org/validators/quickstart/installation.html) instructions for prerequisites and detailed build instructions. Once the dependencies are installed, run the following:
-
-```bash
-make install
-```
-
-Or check out the latest [release](https://github.com/mara-labs/mara-chain/releases).
+Check out the latest [release](https://github.com/mara-labs/mara-chain/releases).
 
 
 ## Quick Start
