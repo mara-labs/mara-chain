@@ -19,7 +19,7 @@ Kindly follow the following steps to install and configure your PC to run the Ma
 
 ### Step 1
 
-Download and install Go quickly with the steps described [here](Download and install Go quickly with the steps described here).
+Download and install Go quickly with the steps described [here](https://go.dev/doc/install).
 
 Next, run `go version` to confirm the installation succeeded.
 
@@ -31,7 +31,7 @@ Run the following command to install dependencies:
 make install
 ```
 
-You will likely get this error message `jq not found` To fix this, follow the [guide](https://stedolan.github.io/jq/download/) to install jq.
+If you haven't installed `jq` already or encounter `jq not found` follow the [guide](https://stedolan.github.io/jq/download/) to install jq.
 
 ### Step 3
 
@@ -63,6 +63,11 @@ Check [here](https://go.dev/doc/gopath_code#GOPATH) to learn more about GOPATH.
 To start up the Mara chain, run the following command:
 ```
 ./init.sh
+```
+
+Use the following command if you are on windows OS.
+```
+./init.bat
 ```
 
 Check out the latest [release](https://github.com/mara-labs/mara-chain/releases).
