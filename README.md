@@ -65,11 +65,6 @@ To start up the Mara chain, run the following command:
 ./init.sh
 ```
 
-Use the following command if you are on windows OS.
-```
-./init.bat
-```
-
 Check out the latest [release](https://github.com/mara-labs/mara-chain/releases).
 
 
