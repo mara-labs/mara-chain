@@ -13,6 +13,9 @@ TRACE="--trace"
 # validate dependencies are installed
 command -v jq > /dev/null 2>&1 || { echo >&2 "jq not installed. More info: https://stedolan.github.io/jq/download/"; exit 1; }
 
+# exit on first error
+set -e
+
 # remove existing daemon and client
 rm -rf ~/.marad*
 
@@ -31,7 +34,9 @@ marad init $MONIKER --chain-id $CHAINID
 cat $HOME/.marad/config/genesis.json | jq '.app_state["staking"]["params"]["bond_denom"]="amara"' > $HOME/.marad/config/tmp_genesis.json && mv $HOME/.marad/config/tmp_genesis.json $HOME/.marad/config/genesis.json
 cat $HOME/.marad/config/genesis.json | jq '.app_state["crisis"]["constant_fee"]["denom"]="amara"' > $HOME/.marad/config/tmp_genesis.json && mv $HOME/.marad/config/tmp_genesis.json $HOME/.marad/config/genesis.json
 cat $HOME/.marad/config/genesis.json | jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="amara"' > $HOME/.marad/config/tmp_genesis.json && mv $HOME/.marad/config/tmp_genesis.json $HOME/.marad/config/genesis.json
+cat $HOME/.marad/config/genesis.json | jq '.app_state["evm"]["params"]["evm_denom"]="amara"' > $HOME/.marad/config/tmp_genesis.json && mv $HOME/.marad/config/tmp_genesis.json $HOME/.marad/config/genesis.json
 cat $HOME/.marad/config/genesis.json | jq '.app_state["mint"]["params"]["mint_denom"]="amara"' > $HOME/.marad/config/tmp_genesis.json && mv $HOME/.marad/config/tmp_genesis.json $HOME/.marad/config/genesis.json
+cat $HOME/.marad/config/genesis.json | jq '.app_state["inflation"]["params"]["mint_denom"]="amara"' > $HOME/.marad/config/tmp_genesis.json && mv $HOME/.marad/config/tmp_genesis.json $HOME/.marad/config/genesis.json
 
 # increase block time (?)
 cat $HOME/.marad/config/genesis.json | jq '.consensus_params["block"]["time_iota_ms"]="1000"' > $HOME/.marad/config/tmp_genesis.json && mv $HOME/.marad/config/tmp_genesis.json $HOME/.marad/config/genesis.json
@@ -73,8 +78,22 @@ fi
 # Allocate genesis accounts (cosmos formatted addresses)
 marad add-genesis-account $KEY 100000000000000000000000000amara --keyring-backend $KEYRING
 
+# Update total supply with claim values
+total_supply=$(cat $HOME/.marad/config/genesis.json | jq -r '.app_state["bank"]["supply"][0]["amount"]')
+echo "genesis total supply: $total_supply"
+# Bc is required to add this big numbers
+# total_supply=$(bc <<< "$amount_to_claim+$validators_supply")
+#total_supply=100000000000000000000010000
+cat $HOME/.marad/config/genesis.json | jq -r --arg total_supply "$total_supply" '.app_state["bank"]["supply"][0]["amount"]=$total_supply' > $HOME/.marad/config/tmp_genesis.json && mv $HOME/.marad/config/tmp_genesis.json $HOME/.marad/config/genesis.json
+
 # Sign genesis transaction
 marad gentx $KEY 1000000000000000000000amara --keyring-backend $KEYRING --chain-id $CHAINID
+## In case you want to create multiple validators at genesis
+## 1. Back to `marad keys add` step, init more keys
+## 2. Back to `marad add-genesis-account` step, add balance for those
+## 3. Clone this ~/.marad home directory into some others, let's say `~/.cloned-val2`
+## 4. Run `gentx` in each of those folders
+## 5. Copy the `gentx-*` files under `~/.cloned-val2/config/gentx/` folders into the original `~/.marad/config/gentx`
 
 # Collect genesis tx
 marad collect-gentxs
