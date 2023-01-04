@@ -12,12 +12,12 @@ Read all about Mara or dive straight into the code with guides.
 
 Notice something amiss? Interested in contributing to these docs?
 
-1. Fork this repo
+1. Fork [this repo](https://github.com/mara-labs/mara-chain)
 
-2. Install dependencies (ensure `npm` is used; compatibility issues arise using `yarn`)
+2. Install dependencies (ensure `npm` is used; compatibility issues arise with `yarn`)
 
 ```
-npm i(nstall)
+npm install
 ```
 
 3. Serve up the site in dev mode
