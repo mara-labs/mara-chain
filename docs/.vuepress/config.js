@@ -32,7 +32,7 @@ module.exports = {
             },
             {
               title: 'Installation',
-              directory: false,
+              directory: true,
               path: '/validators/installation',
             },
             {
