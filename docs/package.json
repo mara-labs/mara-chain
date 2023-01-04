@@ -15,7 +15,7 @@
     "build": "export NODE_OPTIONS=--openssl-legacy-provider && vuepress build",
     "format": "export NODE_OPTIONS=--openssl-legacy-provider && prettier --write .",
     "serve": "export NODE_OPTIONS=--openssl-legacy-provider && vuepress dev --no-cache",
-    "start": "export NODE_OPTIONS=--openssl-legacy-provider && serve .vuepress/dist"
+    "start": "export NODE_OPTIONS=--openssl-legacy-provider && npx serve .vuepress/dist"
   },
   "devDependencies": {
     "prettier": "^2.8.1"
